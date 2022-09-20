@@ -1,6 +1,12 @@
 .App {
   text-align: center;
   width: 100vw;
+  min-height: 100vh;
+  background-color: gainsboro;
+}
+
+.AppHeader {
+  padding-top: 20px;
 }
 
 .addContactForm {
@@ -25,7 +31,7 @@
 
 .searchForm {
   width: 300px;
-  margin: 0px auto 10px;
+  margin: 20px auto 10px;
 }
 
 .searchForm input {
