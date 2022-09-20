@@ -64,8 +64,8 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
             <input disabled={!edit} value={phone} onChange={(e) => setPhone(e.target.value)}/>
             <input disabled={!edit} value={email} onChange={(e) => setEmail(e.target.value)}/>
             <div className='buttonsContainer'>
-            <button onClick={editHandler}>{edit ? 'Cancel' : 'Edit'}</button>
-            <button disabled={!edit} onClick={updateHandler} >Update</button>
+            <button id='edit' onClick={editHandler}>{edit ? 'Cancel' : 'Edit'}</button>
+            <button id='update' disabled={!edit} onClick={updateHandler} >Update</button>
             <button id='delete' onClick={deleteHandler}>Delete</button>
             </div>
             {error && <p>{error}</p>}

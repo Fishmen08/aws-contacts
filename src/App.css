@@ -57,7 +57,8 @@
 .contactsContainer input {
   width: 300px;
   text-align: center;
-  margin: 0 auto;
+  margin: 2px auto;
+  padding: 2px;
 }
 
 .buttonsContainer {
@@ -82,6 +83,32 @@ button:hover {
 
 #delete:hover {
   background-color: darkred;
+}
+
+#edit {
+  background-color: rgb(1, 1, 163);
+  color: white;
+  border: none;
+  padding: 4px 2px;
+}
+
+#edit:hover {
+  background-color: blue;
+}
+
+#update {
+  border: 1px solid grey;
+  padding: 3px 1px;
+}
+
+#update:hover {
+  background-color: darkgray;
+  color: white;
+}
+
+#update:disabled {
+  background-color: #1010104d;
+  pointer-events: none;
 }
 
 
