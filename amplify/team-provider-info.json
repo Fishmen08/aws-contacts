@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-stomblecontacts-dev-155527-authRole",
+      "UnauthRoleArn": "arn:aws:iam::871544800644:role/amplify-stomblecontacts-dev-155527-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::871544800644:role/amplify-stomblecontacts-dev-155527-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-stomblecontacts-dev-155527-deployment",
+      "UnauthRoleName": "amplify-stomblecontacts-dev-155527-unauthRole",
+      "StackName": "amplify-stomblecontacts-dev-155527",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:871544800644:stack/amplify-stomblecontacts-dev-155527/a9eb7ad0-37df-11ed-96b3-06be579fea54",
+      "AmplifyAppId": "d2la1r4xow87ij"
+    }
+  }
+}
