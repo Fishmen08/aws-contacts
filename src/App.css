@@ -1,8 +1,85 @@
 .App {
   text-align: center;
+  width: 100vw;
 }
 
-.App-logo {
+.addContactForm {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.addContactForm  input {
+  padding: 2px;
+  margin-top: 4px;
+}
+
+.addContactForm button {
+  margin-top: 4px;
+}
+
+.addContactForm fieldset {
+  margin-top: 2px;
+}
+
+.searchForm {
+  width: 300px;
+  margin: 0px auto 10px;
+}
+
+.searchForm input {
+  width: 190px;
+  margin-right: 5px;
+  padding: 2px;
+}
+
+.searchForm button {
+  width: 90px;
+}
+
+.contactsListContainer {
+  width: 100%;
+}
+
+.contactsContainer {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactsContainer input {
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.buttonsContainer {
+  width: 300px;
+  margin: 2px auto;
+}
+
+.buttonsContainer button {
+  width: 33%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 4px 2px;
+}
+
+#delete:hover {
+  background-color: darkred;
+}
+
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +112,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

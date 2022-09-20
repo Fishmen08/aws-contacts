@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-// import AddContact from './components/AddContact';
 import Amplify from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -22,9 +21,11 @@ function App() {
   const [error, setError] = useState('');
   const [sort, setSort] = useState('');
 
+  // Function for creating a new contact and adding it to the data base then resetting the input fields
   const createNewContact = async (e) => {
     e.preventDefault();
         setError('');
+        setSuccess('');
         try {
             const id = uuidv4();
             await API.graphql(graphqlOperation(createContacts, {input: {id: id, name: name, phoneNumber: phoneNumber, email: email}}));
@@ -39,22 +40,25 @@ function App() {
         }
   }
 
+  // Clears all the input fields quickly
   const clearHandler = (e) => {
     e.preventDefault();
       setName('');
       setPhoneNumber('');
       setEmail('');
+      setSuccess('');
   }
 
+  //Function for editing the contact info, this is passed as props to the all contacts component which it calls to update contacts
   const editContactInfo = async (id, newName, newPhone, newEmail) => {
     try {
       await API.graphql(graphqlOperation(updateContacts, {input: {id: id, name: newName, phoneNumber: newPhone, email: newEmail}}));
-      // fetchAllContacts();
     } catch (error) {
       console.log(error)
     }
   }
 
+  // Function used to fetch all contacts from the database - which is called on each render with useEffect and is also called upon each change of the contacts
   const fetchAllContacts = async () => {
     try {
       const getAllContacts = await API.graphql(graphqlOperation(listContacts));
@@ -69,6 +73,7 @@ function App() {
     }
   }
 
+  //Function searching through the contacts for a certain contact
   const sortContacts = (e) => {
     e.preventDefault();
     try{
@@ -80,6 +85,7 @@ function App() {
     }
   }
 
+  //Function for deleting contacts from the database, this is passed as props to the allContacts component to call
   const deleteContact = async (id) => {
     try {
       await API.graphql(graphqlOperation(deleteContacts, {input: {id: id}}));
@@ -89,6 +95,7 @@ function App() {
     }
   }
 
+  // Function that is used to convert CSV file data to usable values. This is currently only set-up to take single exported contacts from gmail
   const setFile = (e, file) => {
     e.preventDefault();
     const parseFile = (file) => {
@@ -111,6 +118,7 @@ function App() {
     parseFile(file);
   }
 
+  //Makes sure that all the contacts are fetched on each render
   useEffect(() => {
     fetchAllContacts();
   }, [])
@@ -119,12 +127,8 @@ function App() {
     <div className="App">
       <header className='AppHeader'>
         <h1>Contact List</h1>
-        <form onSubmit={sortContacts}>
-          <input value={sort} onChange={(e) => setSort(e.target.value)} />
-          <button type='submit'>Search</button>
-        </form>
       </header>
-      <form onSubmit={createNewContact}>
+      <form className='addContactForm' onSubmit={createNewContact}>
         <input type='text' value={name} required placeholder='Name' onChange={(e) => setName(e.target.value)} />
         <input type='text' value={phoneNumber} placeholder='Phone Number' onChange={(e) => setPhoneNumber(e.target.value)} />
         <input type='text' value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
@@ -134,12 +138,19 @@ function App() {
           <label htmlFor='fileInput'>Import contact from .CSV file</label>
           <input type='file' name='fileInput' accept='.csv' onChange={(e) => setFile(e, e.target.files[0])} />
         </fieldset>
+        {success && <p>{success}</p>}
+        {error && <p>{error}</p>}
       </form>
-      <div>
+      <form className='searchForm' onSubmit={sortContacts}>
+          <h3>Search</h3>
+          <input value={sort} onChange={(e) => setSort(e.target.value)} />
+          <button type='submit'>Search</button>
+      </form>
+      <div className='contactsListContainer'>
         {sortedContacts.map(contact => {return (
-          <div>
+          
             <AllContacts editContactInfo={editContactInfo} deleteContact={deleteContact} contact={contact} />
-          </div>
+          
         )})}
       </div>
     </div>

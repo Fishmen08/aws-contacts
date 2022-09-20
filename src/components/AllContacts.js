@@ -8,6 +8,7 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    //Function for going in and out of edit client mode
     const editHandler = (e) => {
         e.preventDefault();
         if (edit) {
@@ -22,6 +23,7 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
         }
     }
 
+    //Function for updating contact details
     const updateHandler = (e) => {
         e.preventDefault();
         try {
@@ -37,6 +39,7 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
         }
     }
 
+    //Function for deleting contact
     const deleteHandler = (e) => {
         e.preventDefault();
         if (window.confirm('Are you sure you want to delete ' + contact.name + "?" ) === true) {
@@ -46,6 +49,7 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
         }
     }
 
+    //Sets the contact details to the correct contact each time the contacts list changes - this is needed for searching through contacts
     useEffect(() => {
         setName(contact.name);
         setPhone(contact.phoneNumber);
@@ -55,13 +59,15 @@ export default function AllContacts({contact, editContactInfo, deleteContact}) {
     }, [contact])
 
     return (
-        <div>
+        <div className='contactsContainer'>
             <input disabled={!edit} value={name} onChange={(e) => setName(e.target.value)}/>
             <input disabled={!edit} value={phone} onChange={(e) => setPhone(e.target.value)}/>
             <input disabled={!edit} value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <div className='buttonsContainer'>
             <button onClick={editHandler}>{edit ? 'Cancel' : 'Edit'}</button>
             <button disabled={!edit} onClick={updateHandler} >Update</button>
-            <button onClick={deleteHandler}>Delete</button>
+            <button id='delete' onClick={deleteHandler}>Delete</button>
+            </div>
             {error && <p>{error}</p>}
             {success && <p>{success}</p>}
         </div>
