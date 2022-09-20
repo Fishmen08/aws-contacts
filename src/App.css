@@ -107,7 +107,7 @@ button:hover {
 }
 
 #update:disabled {
-  background-color: #1010104d;
+  background-color: #aaaaaa2c;
   pointer-events: none;
 }
 
