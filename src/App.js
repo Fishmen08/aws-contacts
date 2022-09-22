@@ -8,10 +8,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { listContacts } from './graphql/queries';
 import AllContacts from './components/AllContacts';
 import Papa from 'papaparse';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsmobile);
 
-function App() {
+function App({signOut}) {
   const [allContacts, setAllContacts] = useState([]);
   const [sortedContacts, setSortedContacts] = useState([]);
   const [name, setName] = useState('');
@@ -127,6 +128,7 @@ function App() {
     <div className="App">
       <header className='AppHeader'>
         <h1>Contact List</h1>
+        <button onClick={signOut}>Sign Out</button>
       </header>
       <form className='addContactForm' onSubmit={createNewContact}>
         <input type='text' value={name} required placeholder='Name' onChange={(e) => setName(e.target.value)} />
@@ -157,4 +159,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
